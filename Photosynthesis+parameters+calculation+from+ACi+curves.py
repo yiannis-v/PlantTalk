@@ -34,7 +34,7 @@ J = (A_light + Rd)*(4*Cc + 8*g_star)/(Cc - g_star)
 #define function for A in terms of Cc
 
 def func(x, a, g_star, Kc, O, Ko, Rd):
-  return a*(x - g_star)/(x + Kc(1 + O/Ko)) - Rd
+  return a*(x - g_star)/(x + Kc*(1 + O/Ko)) - Rd
 
 popt, pcov = curve_fit(func, Cc, A_light)
 
