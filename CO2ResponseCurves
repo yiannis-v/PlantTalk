@@ -1,1 +1,38 @@
+import numpy as np 
+import pandas as pd
+import matplotlib.pyplot as plt
+import os
+%matplotlib inline
 
+path='C:/Users/Yiannis/Desktop/CSVs/'
+dirs=os.listdir(path)
+for file in dirs:
+    print (file)
+
+path='C:/Users/Yiannis/Desktop/CSVs/'
+Data=pd.DataFrame()
+for File in os.listdir(path):
+       df=pd.read_csv('%s%s'%(path,File))
+       Data=pd.concat([Data,df])
+
+Data = Data[::][Data.Obs!='Remark']
+
+Light_values= Data[Data.Photo>0]
+array=np.array(Light_values)
+
+Light_Photo= (array[0:2514,32])
+Light_Ci = (array[0:2514,8])
+x = Light_Ci
+y = Light_Photo
+All=plt.scatter (x, y)
+plt.scatter (x, y)
+plt.xlabel('CO2')
+plt.ylabel('A')
+plt.title ('A-Ci Curve')
+plt.ylim([-10,50])
+plt.xlim([-500,2500])
+plt.rcParams['font.family'] = 'serif'
+plt.rcParams['font.size'] = 14
+plt.rcParams['axes.labelsize'] = 18
+plt.grid(True)
+plt.show()
